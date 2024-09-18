@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  rs1_node1:
+    image: redislabs/redis:latest
+    cap_add:
+      - sys_resource
+    ports:
+      - "8443:8443"
+      - "9443:9443"
+      - "12000:12000"
+    networks:
+      - redis_net
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==manager-redis
+
+  rs2_node1:
+    image: redislabs/redis:latest
+    cap_add:
+      - sys_resource
+    ports:
+      - "8445:8443"
+      - "9445:9443"
+      - "12002:12000"
+    networks:
+      - redis_net
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==load-balancer1
+
+networks:
+  redis_net:
+    driver: overlay

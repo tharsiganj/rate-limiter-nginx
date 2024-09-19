@@ -6,9 +6,18 @@ services:
     cap_add:
       - sys_resource
     ports:
-      - "8443:8443"
-      - "9443:9443"
-      - "12000:12000"
+      - target: 8443
+        published: 8443
+        protocol: tcp
+        mode: host  # Use host networking mode to avoid routing mesh
+      - target: 9443
+        published: 9443
+        protocol: tcp
+        mode: host
+      - target: 12000
+        published: 12000
+        protocol: tcp
+        mode: host
     networks:
       - redis_net
     deploy:
@@ -21,9 +30,18 @@ services:
     cap_add:
       - sys_resource
     ports:
-      - "8443:8443"
-      - "9443:9443"
-      - "12000:12000"
+      - target: 8443
+        published: 8443
+        protocol: tcp
+        mode: host
+      - target: 9443
+        published: 9443
+        protocol: tcp
+        mode: host
+      - target: 12000
+        published: 12000
+        protocol: tcp
+        mode: host
     networks:
       - redis_net
     deploy:

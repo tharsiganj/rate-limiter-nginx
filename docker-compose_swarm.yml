@@ -21,9 +21,9 @@ services:
     cap_add:
       - sys_resource
     ports:
-      - "8445:8443"
-      - "9445:9443"
-      - "12002:12000"
+      - "8443:8443"
+      - "9443:9443"
+      - "12000:12000"
     networks:
       - redis_net
     deploy:
